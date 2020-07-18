@@ -1,0 +1,6 @@
+/.DS_Store
+/.vscode
+
+/.pyenv
+/dist
+__pycache__

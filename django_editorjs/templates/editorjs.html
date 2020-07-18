@@ -1,0 +1,11 @@
+<div data-editorjs-wrapper>
+  <div data-editorjs-holder></div>
+  <textarea data-editorjs-input class="hidden" id="{{id}}" name="{{name}}">
+    {% if value %}
+        {{value|safe}}
+    {% endif %}
+  </textarea>
+  <script data-editorjs-config type="application/json">
+    {{editorjs_config|safe}}
+  </script>
+</div>
