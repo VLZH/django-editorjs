@@ -1,7 +1,7 @@
 # django-editorjs
 
 [![GitHub version](https://badge.fury.io/gh/VLZH%2Fdjango-editorjs.svg)](https://badge.fury.io/gh/VLZH%2Fdjango-editorjs)
-[![PyPi downloads](GitHub version)](https://pypi.org/project/django-editorjs/)
+[![PyPi downloads](https://img.shields.io/pypi/dm/django-editorjs)](https://pypi.org/project/django-editorjs/)
 
 Plugin for using [Editor.js](https://editorjs.io/) in django admin.
 
