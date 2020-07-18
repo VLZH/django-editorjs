@@ -1,6 +1,7 @@
 # django-editorjs
 
 [![GitHub version](https://badge.fury.io/gh/VLZH%2Fdjango-editorjs.svg)](https://badge.fury.io/gh/VLZH%2Fdjango-editorjs)
+[![PyPi downloads](GitHub version)](https://pypi.org/project/django-editorjs/)
 
 Plugin for using [Editor.js](https://editorjs.io/) in django admin.
 
@@ -27,7 +28,9 @@ Plugin for using [Editor.js](https://editorjs.io/) in django admin.
 
 # Installation
 
-> TODO
+```bash
+pip install django-editorjs
+```
 
 # Simple example
 
@@ -94,3 +97,10 @@ class Post(models.Model):
 
   Widget that you can to use for using Editor.js in Django.
 
+# TODO
+
+- load tool on demand
+- more examples in README.md
+- view-function for file uploading
+- view-function for image uploading
+- view-function for link info crawler
