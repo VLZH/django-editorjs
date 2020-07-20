@@ -4,3 +4,4 @@
 /.pyenv
 /dist
 __pycache__
+db.sqlite3

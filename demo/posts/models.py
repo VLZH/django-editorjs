@@ -8,7 +8,7 @@ class Post(models.Model):
         editorjs_config={
             "tools": {
                 "Table": {
-                    "disabled": False,
+                    "disabled": True,
                     "inlineToolbar": True,
                     "config": {"rows": 2, "cols": 3,},
                 }
