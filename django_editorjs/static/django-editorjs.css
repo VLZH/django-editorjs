@@ -1,0 +1,80 @@
+/*GLOBAL*/
+[data-editorjs-wrapper] {
+    max-width: 700px;
+    width: 100%;
+    border-radius: 4px;
+    background: #fff;
+    padding: 1.2em;
+    display: inline-block;
+    border: 1px solid #ccc;
+}
+.codex-editor {
+}
+
+/*LIST*/
+body .codex-editor .cdx-list {
+    margin: 0;
+    padding-left: 40px;
+    outline: none;
+}
+body .codex-editor .cdx-list__item {
+    padding: 5.5px 0 5.5px 3px;
+    line-height: 1.6em;
+    list-style: inherit;
+}
+body .codex-editor .cdx-list--unordered {
+    list-style: disc;
+}
+body .codex-editor .cdx-list--ordered {
+    list-style: decimal;
+}
+body .codex-editor .cdx-list-settings {
+    display: flex;
+}
+body .codex-editor .cdx-list-settings .cdx-settings-button {
+    width: 50%;
+}
+/*HEADER*/
+body .codex-editor .ce-header {
+    padding: 1em 0;
+    margin: 0;
+    margin-bottom: -0.9em;
+    line-height: 1.5em;
+    outline: none;
+    background: transparent;
+    color: #000;
+    font-weight: 800;
+}
+body .codex-editor h1.ce-header {
+    font-size: 2em;
+}
+body .codex-editor h2.ce-header {
+    font-size: 1.5em;
+}
+body .codex-editor h3.ce-header {
+    font-size: 1.17em;
+}
+body .codex-editor h4.ce-header {
+    font-size: 1.17em;
+}
+body .codex-editor h5.ce-header {
+    font-size: 1em;
+}
+body .codex-editor h6.ce-header {
+    font-size: 0.67em;
+}
+
+body .codex-editor blockquote {
+    border: initial;
+    margin: initial;
+    color: initial;
+    font-size: inherit;
+}
+
+body .codex-editor .link-tool__progress {
+    float: initial;
+    width: 100%;
+    line-height: initial;
+    padding: initial;
+}
+
