@@ -87,6 +87,27 @@ class Post(models.Model):
   - `Attaches` - (`dict`) configuration for tool `AttachesTool`. (_For more info see official documentation for tool_).
   - `Table` - (`dict`) configuration for tool `Table`. (_For more info see official documentation for tool_).
 
+## Using Custom Block Tools
+
+You can now add custom block tools by serving a js file named "custom-editorjs-tools.js" in the static folder, this can contain any custom block tool, let's imagine it contains a *SimpleImage* block tool. You can now use this block by setting something like this in the configuration. **Warning: The class content should not ever depend on user input or any nontrusted input, as it could lead to xss**
+
+```python
+class Post(models.Model):
+    title = models.TextField()
+    body = EditorJsField(
+        editorjs_config={
+            "tools": {
+                "Custom": {
+                    "Customimage": {
+                        "class": "SimpleImage"
+                    }
+                }
+            }
+        }
+    )
+
+```
+
 # API
 
 - `EditorJsField`
