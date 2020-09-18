@@ -29,6 +29,20 @@
   }
 
   /**
+   * @param {Object} config
+   */
+  function getCustomTools(config){
+    if (config && config.tools && config.tools["Custom"]){
+      var tools = {};
+      for (const [key, value] of Object.entries(config.tools["Custom"])) {
+        tools[key] = value;
+        tools[key].class = eval(tools[key].class);
+      }
+      return tools;
+    } 
+  }
+
+  /**
    * @param {HTMLDivElement} field_wrapper
    */
   function initEditorJsField(field_wrapper) {
@@ -109,6 +123,10 @@
         inlineToolbar: true,
       });
     }
+    tools = {
+      ...tools,
+      ...getCustomTools(config)
+    };
 
     const editor = new EditorJS({
       holder: holder_el,

@@ -14,6 +14,7 @@ class EditorJsWidget(widgets.Textarea):
             css={"all": ["django-editorjs.css"]},
             js=(
                 "https://cdn.jsdelivr.net/combine/npm/@editorjs/editorjs@2.18.0,npm/@editorjs/paragraph@2.7.0,npm/@editorjs/image@2.4.2,npm/@editorjs/header@2.5.0,npm/@editorjs/list@1.5.0,npm/@editorjs/checklist@1.1.0,npm/@editorjs/quote@2.3.0,npm/@editorjs/raw@2.1.2,npm/@editorjs/embed@2.3.1,npm/@editorjs/delimiter@1.1.0,npm/@editorjs/warning@1.1.1,npm/@editorjs/link@2.2.1,npm/@editorjs/marker@1.2.2,npm/@editorjs/attaches@1.0.1,npm/@editorjs/table@1.2.2",
+                "custom-editorjs-tools.js",
                 "django-editorjs.js",
             ),
         )
