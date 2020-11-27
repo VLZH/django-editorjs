@@ -1,4 +1,3 @@
 [virtualenvs]
-create = false
+create = true
 in-project = true
-path = ".pyenv"

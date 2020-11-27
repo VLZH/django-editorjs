@@ -5,7 +5,7 @@ from django_editorjs.widgets import EditorJsWidget
 
 
 class EditorJsField(Field):
-    def __init__(self, editorjs_config=None, *args, **kwargs):
+    def __init__(self, editorjs_config={}, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self._editorjs_config = editorjs_config
 

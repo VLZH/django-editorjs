@@ -4,7 +4,7 @@ from django.template.loader import render_to_string
 
 
 class EditorJsWidget(widgets.Textarea):
-    def __init__(self, editorjs_config, *args, **kwargs):
+    def __init__(self, editorjs_config={}, *args, **kwargs):
         super(EditorJsWidget, self).__init__(*args, **kwargs)
         self._editorjs_config = editorjs_config
 
@@ -23,6 +23,6 @@ class EditorJsWidget(widgets.Textarea):
             "name": name,
             "id": kwargs["attrs"]["id"],
             "value": value,
-            "editorjs_config": json.dumps(self._editorjs_config),
+            "editorjs_config": json.dumps({**self._editorjs_config}),
         }
         return render_to_string("editorjs.html", ctx)

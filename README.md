@@ -5,7 +5,16 @@
 
 Plugin for using [Editor.js](https://editorjs.io/) in django admin.
 
-# Supported plugins/tools
+- [Supported tools](#supported-tools)
+- [Installation](#installation)
+- [Simple example](#simple-example)
+- [Configuration](#configuration)
+  - [Base configuration](#base-configuration)
+  - [How to configure fields and tools](#how-to-configure-fields)
+- [API](#api)
+- [How to run demo](#how-to-run-demo)
+
+# Supported tools
 
 - `@editorjs/paragraph` - [![npm version](https://badge.fury.io/js/%40editorjs%2Fparagraph.svg)](https://badge.fury.io/js/%40editorjs%2Fparagraph)
 - `@editorjs/image` - [![npm version](https://badge.fury.io/js/%40editorjs%2Fimage.svg)](https://badge.fury.io/js/%40editorjs%2Fimage)
@@ -22,15 +31,29 @@ Plugin for using [Editor.js](https://editorjs.io/) in django admin.
 - `@editorjs/attaches` - [![npm version](https://badge.fury.io/js/%40editorjs%2Fattaches.svg)](https://badge.fury.io/js/%40editorjs%2Fattaches)
 - `@editorjs/table` - [![npm version](https://badge.fury.io/js/%40editorjs%2Ftable.svg)](https://badge.fury.io/js/%40editorjs%2Ftable)
 
-> #### ⚠️ Note (for plugin configuration)
->
-> Usually in examples for Editor.js you will see tool names starts with lowercase, but for bypass potential conflicts i use uppercase.
-
 # Installation
 
-```bash
-pip install django-editorjs
-```
+1. First step is install plugin.
+   ```bash
+   pip install django-editorjs
+   ```
+2. Add plugin to INSTALLED_APPS in Django settings file.
+   ```python
+   # settings.py
+   INSTALLED_APPS = [
+       # some other apps
+       'django_editorjs'
+   ]
+   ```
+3. Register plugin's endpoints in in `urlpatterns`
+   ```python
+   # urls.py
+   from django_editorjs.urls import urlpatterns
+   urlpatterns = [
+       # other urls
+       *urlpatterns
+   ]
+   ```
 
 # Simple example
 
@@ -47,7 +70,21 @@ class Post(models.Model):
         return self.title
 ```
 
-# How to configure
+# Configuration
+
+## Base configuration
+
+This plugin provides additional functionality for saving images and files + allow to get information about some link.
+You can to configure some options in your `settings.py` file.
+
+- `EDITORJS_IMAGES_FOLDER` - Default folder for keep images uploaded through EditorJs (_Default: `{MEDIA_ROOT}/editorjs`_)
+- `EDITORJS_FILES_FOLDER` - Default folder for keep files uploaded through EditorJs (_Default: `{MEDIA_ROOT}/editorjs`_)
+
+## How to configure fields
+
+> #### ⚠️ Note (for plugin configuration)
+>
+> Usually in examples for Editor.js you will see tool names starts with lowercase, but for bypass potential conflicts i name tools with capital letters.
 
 You can provide field specific configuration options to `EditorJsField` by argument `editorjs_config`.
 
@@ -70,7 +107,7 @@ class Post(models.Model):
 
 ```
 
-## Config schema
+#### Config schema
 
 - `tools`
   - `Image` - (`dict`) configuration for tool `ImageTool`. (_For more info see official documentation for tool_).
@@ -96,6 +133,40 @@ class Post(models.Model):
 - `EditorJsWidget`
 
   Widget that you can to use for using Editor.js in Django.
+
+## Custom `ImageSaver`
+
+`ImageSaver` is class for saving images on disk. You can to create custom saver. Custom saver must implement this interface:
+
+```python
+class ImageSaver:
+  save(file: File) -> ImageSaveResult
+```
+
+after creating class you can to change option `EDITORJS_IMAGES_SAVER` in settings to somethink like:
+
+```python
+# settings.py
+EDITORJS_IMAGES_SAVER = "your_app.your_module.YourImageSaverClass"
+```
+
+## Custom `FileSaver`
+
+Similary to `ImageSaver` you can to create custom `FileSaver` class with this interface:
+
+```python
+class FileSaver:
+  save(file: File) -> FileSaveResult
+```
+
+# How to run demo
+
+```bash
+poetry install
+poetry run python ./demo/manage.py migrate
+poetry run python ./demo/manage.py createsuperuser
+poetry run python ./demo/manage.py runserver
+```
 
 # TODO
 

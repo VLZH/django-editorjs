@@ -41,6 +41,12 @@
       tools.Image = extractToolConfig(config, "Image", {
         class: ImageTool,
         inlineToolbar: true,
+        config: {
+          endpoints: {
+            byFile: "/editorjs/image/",
+            byUrl: "/editorjs/image/",
+          },
+        },
       });
     }
     if (!isDisabled(config, "Header")) {
@@ -101,6 +107,9 @@
     if (!isDisabled(config, "Attaches")) {
       tools.Attaches = extractToolConfig(config, "Attaches", {
         class: AttachesTool,
+        config: {
+          endpoint: "/editorjs/file/",
+        },
       });
     }
     if (!isDisabled(config, "Table")) {
