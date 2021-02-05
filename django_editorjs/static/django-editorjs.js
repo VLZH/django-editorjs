@@ -1,5 +1,25 @@
 (function () {
   /**
+   * @param {String} name
+   */
+  var getCookie = function(name) {
+      var cookieValue = null;
+      var i = 0;
+      if (document.cookie && document.cookie !== '') {
+          var cookies = document.cookie.split(';');
+          for (i; i < cookies.length; i++) {
+              var cookie = jQuery.trim(cookies[i]);
+              // Does this cookie string begin with the name we want?
+              if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                  cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                  break;
+              }
+          }
+      }
+      return cookieValue;
+  };
+
+  /**
    * @param {Object} config
    * @param {String} tool
    * @param {Object} default_config
@@ -36,12 +56,15 @@
     var input_el = field_wrapper.querySelector("[data-editorjs-input]");
     var config_el = field_wrapper.querySelector("[data-editorjs-config]");
     var config = JSON.parse(config_el.innerHTML.trim());
+    var upload_image_endpoint = config.UPLOAD_IMAGE_ENDPOINT;
     var tools = {};
     if (!isDisabled(config, "Image")) {
       tools.Image = extractToolConfig(config, "Image", {
         class: ImageTool,
         inlineToolbar: true,
+        config: { endpoints: { byFile: upload_image_endpoint } },
       });
+      tools.Image.config.additionalRequestHeaders = {"X-CSRFToken": getCookie("csrftoken")};
     }
     if (!isDisabled(config, "Header")) {
       tools.Header = extractToolConfig(config, "Header", {

@@ -32,6 +32,8 @@ Plugin for using [Editor.js](https://editorjs.io/) in django admin.
 pip install django-editorjs
 ```
 
+Add django_editorjs to your INSTALLED_APPS setting.
+
 # Simple example
 
 ```python
@@ -87,6 +89,50 @@ class Post(models.Model):
   - `Attaches` - (`dict`) configuration for tool `AttachesTool`. (_For more info see official documentation for tool_).
   - `Table` - (`dict`) configuration for tool `Table`. (_For more info see official documentation for tool_).
 
+## For file upload
+
+1. Add `EditorjsImageUploaderView` view to your project's `urls.py` file:
+
+```python
+from django_editorjs.views import EditorjsImageUploader
+
+...
+
+urlpatterns += [
+    path("editorjs/image/", EditorjsImageUploaderView.as_view())
+]
+```
+
+2. Setting Configurations `settings.py`
+   
+```python
+# EditorjsImageUploaderView absolute url
+EDITORJS_UPLOAD_IMAGE_URL = "/editorjs/image/"
+
+# Relative path to your editorjs media upload directory
+EDITORJS_UPLOAD_IMAGE_PATH = "editorjs/images/"
+
+# Images types that available for upload
+EDITORJS_IMAGE_TYPES = (
+    "image/png",
+    "image/jpg",
+    "image/jpeg",
+    "image/pjpeg",
+    "image/gif",
+)
+
+# Maximum Upload Image
+# 2.5MB - 2621440
+# 5MB - 5242880
+# 10MB - 10485760
+# 20MB - 20971520
+# 50MB - 5242880
+# 100MB 104857600
+# 250MB - 214958080
+# 500MB - 429916160
+EDITORJS_MAX_IMAGE_UPLOAD_SIZE = 1024 * 1024  # Default 10MB
+```
+
 # API
 
 - `EditorJsField`
@@ -102,5 +148,4 @@ class Post(models.Model):
 - load tool on demand
 - more examples in README.md
 - view-function for file uploading
-- view-function for image uploading
 - view-function for link info crawler
